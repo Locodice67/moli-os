@@ -1399,6 +1399,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "moli-modbus"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "moli-core",
+ "moli-i18n",
+ "moli-runtime",
+ "serde",
+ "tokio",
+ "tracing",
+]
+
+[[package]]
 name = "moli-moonraker"
 version = "0.1.0"
 dependencies = [
@@ -1460,6 +1473,7 @@ dependencies = [
  "moli-igd",
  "moli-ipp",
  "moli-lights",
+ "moli-modbus",
  "moli-moonraker",
  "moli-net",
  "moli-philips",
