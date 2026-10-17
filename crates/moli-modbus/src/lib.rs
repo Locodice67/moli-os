@@ -51,7 +51,7 @@ pub enum Connection {
 }
 
 /// The four register areas Modbus addresses.
-#[derive(Clone, Copy, Debug, Deserialize)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum RegType {
     Coil,
@@ -61,7 +61,7 @@ pub enum RegType {
 }
 
 /// How a 16-bit word is read (signed or unsigned).
-#[derive(Clone, Copy, Debug, Default, Deserialize)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Default, Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum DataType {
     #[default]
