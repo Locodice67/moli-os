@@ -97,19 +97,19 @@ pub struct Point {
     pub options: BTreeMap<String, u16>,
 }
 
-fn default_port() -> u16 {
+const fn default_port() -> u16 {
     502
 }
 
-fn default_unit() -> u8 {
+const fn default_unit() -> u8 {
     1
 }
 
-fn default_scan() -> u64 {
+const fn default_scan() -> u64 {
     30
 }
 
-fn one() -> f64 {
+const fn one() -> f64 {
     1.0
 }
 
@@ -380,7 +380,7 @@ fn to_value(point: &Point, word: u16) -> Option<Value> {
         Kind::Enum { .. } => point
             .options
             .iter()
-            .find(|(_, &raw)| raw == word)
+            .find(|(_, raw)| *raw == word)
             .map(|(text, _)| Value::Text(text.clone().into())),
         Kind::Text => None,
     }
