@@ -661,6 +661,6 @@ mod tests {
             ..point(Kind::Binary, RegType::Holding, 3, DataType::Int16)
         };
         assert_eq!(to_word(&p, &Value::Float(25.0)).unwrap(), 110);
-        assert_eq!(to_word(&p, &Value::Float(200.0)).unwrap(), 32_767);
+        assert_eq!(to_word(&p, &Value::Float(20_000.0)).unwrap(), 32_767);
     }
 }
