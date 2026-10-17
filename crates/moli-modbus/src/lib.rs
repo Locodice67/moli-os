@@ -142,7 +142,11 @@ fn crc16(data: &[u8]) -> u16 {
     for &byte in data {
         crc ^= u16::from(byte);
         for _ in 0..8 {
-            crc = if crc & 1 == 0 { crc >> 1 } else { (crc >> 1) ^ 0xA001 };
+            crc = if crc & 1 == 0 {
+                crc >> 1
+            } else {
+                (crc >> 1) ^ 0xA001
+            };
         }
     }
     crc
@@ -397,7 +401,10 @@ fn to_word(point: &Point, value: &Value) -> anyhow::Result<u16> {
         Kind::Binary => Ok(u16::from(matches!(value, Value::Bool(true)))),
         Kind::Numeric { .. } => {
             let n = value.as_f64().context("expected a number")?;
-            Ok(clamp_word((n - point.offset) / point.scale, point.data_type))
+            Ok(clamp_word(
+                (n - point.offset) / point.scale,
+                point.data_type,
+            ))
         }
         Kind::Enum { .. } => {
             let text = match value {
@@ -451,7 +458,11 @@ async fn write_point(client: &mut Client, point: &Point, value: &Value) -> anyho
             };
             client.write_coil(point.address, on).await
         }
-        RegType::Holding => client.write_word(point.address, to_word(point, value)?).await,
+        RegType::Holding => {
+            client
+                .write_word(point.address, to_word(point, value)?)
+                .await
+        }
         RegType::Input | RegType::DiscreteInput => {
             bail!("{:?} registers are read-only", point.register)
         }
@@ -518,7 +529,10 @@ async fn connect(config: &Config) -> Option<Client> {
         .ok()
 }
 
-async fn poll(config: &Config, client: &mut Client) -> anyhow::Result<Vec<(String, Option<Value>)>> {
+async fn poll(
+    config: &Config,
+    client: &mut Client,
+) -> anyhow::Result<Vec<(String, Option<Value>)>> {
     let mut values = Vec::with_capacity(config.points.len());
     for point in &config.points {
         let value = read_point(client, point).await?;
@@ -578,7 +592,9 @@ mod tests {
         let frame = frame_tcp(0x0001, 17, &[0x03, 0x00, 0x01, 0x00, 0x01]);
         assert_eq!(
             frame,
-            vec![0x00, 0x01, 0x00, 0x00, 0x00, 0x06, 17, 0x03, 0x00, 0x01, 0x00, 0x01]
+            vec![
+                0x00, 0x01, 0x00, 0x00, 0x00, 0x06, 17, 0x03, 0x00, 0x01, 0x00, 0x01
+            ]
         );
     }
 
