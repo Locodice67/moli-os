@@ -212,7 +212,7 @@ impl Client {
         let mut pdu = vec![func];
         pdu.extend_from_slice(&addr.to_be_bytes());
         match func {
-            0x01 | 0x02 | 0x03 | 0x04 => pdu.extend_from_slice(&count.to_be_bytes()),
+            0x01..=0x04 => pdu.extend_from_slice(&count.to_be_bytes()),
             0x05 | 0x06 => pdu.extend_from_slice(&value.unwrap_or(0).to_be_bytes()),
             _ => bail!("unsupported function {func:#04x}"),
         }
@@ -546,7 +546,8 @@ async fn handle_command(
     client: &mut Option<Client>,
     command: &CommandRequest,
 ) -> Result<(), String> {
-    let Some(point) = config.points.iter().find(|p| p.key == &*command.key) else {
+    let Some(point) = config.points.iter().find(|p| p.key.as_str() == command.key.as_ref())
+    else {
         return Err(format!("unknown point {}", command.key));
     };
     if !point.write {
