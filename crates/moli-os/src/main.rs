@@ -873,6 +873,7 @@ const KINDS: &[&str] = &[
     "telegram",
     "phones",
     "moonraker",
+    "modbus",
     "ipp",
     "host",
     "profile",
@@ -1020,6 +1021,9 @@ fn build_driver(
             config.options.clone().try_into().with_context(context)?,
         )),
         "moonraker" => Arc::new(moli_moonraker::Moonraker::new(
+            config.options.clone().try_into().with_context(context)?,
+        )),
+        "modbus" => Arc::new(moli_modbus::Modbus::new(
             config.options.clone().try_into().with_context(context)?,
         )),
         "ipp" => Arc::new(moli_ipp::Ipp::new(

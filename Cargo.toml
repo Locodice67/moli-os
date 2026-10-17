@@ -19,6 +19,7 @@ moli-hue = { path = "crates/moli-hue" }
 moli-host = { path = "crates/moli-host" }
 moli-history = { path = "crates/moli-history" }
 moli-profile = { path = "crates/moli-profile" }
+moli-modbus = { path = "crates/moli-modbus" }
 moli-energy = { path = "crates/moli-energy" }
 moli-tuya = { path = "crates/moli-tuya" }
 moli-net = { path = "crates/moli-net" }

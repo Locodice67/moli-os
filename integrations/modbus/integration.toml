@@ -1,0 +1,25 @@
+[integration]
+id = "modbus"
+name = "Appareil Modbus (TCP / RTU sur TCP)"
+# Generic: any device speaking Modbus TCP or RTU-over-TCP, described by the
+# register map in the instance's options.
+brands = []
+models = []
+transport = "tcp"
+driver = "modbus"
+crate = "moli-modbus"
+
+[discovery]
+# No discovery: the instance gives the gateway's address and unit id.
+mdns = []
+ssdp = []
+ports = [502]
+
+[needs]
+secrets = []
+vars = []
+options = ["host", "points"]
+
+[origin]
+reused = "aucun code repris : protocole Modbus implémenté d'après la spécification publique (MBAP, CRC16) ; la carte de registres est fournie par l'utilisateur dans moli.toml"
+author = "agent"

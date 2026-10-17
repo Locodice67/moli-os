@@ -17,6 +17,7 @@ moli-hue.workspace = true
 moli-host.workspace = true
 moli-history.workspace = true
 moli-profile.workspace = true
+moli-modbus.workspace = true
 moli-energy.workspace = true
 moli-tuya.workspace = true
 moli-reolink.workspace = true

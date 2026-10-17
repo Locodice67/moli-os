@@ -1,0 +1,19 @@
+[package]
+name = "moli-modbus"
+description = "Modbus TCP and RTU-over-TCP driver for Moli OS (declarative register map)."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+moli-core.workspace = true
+moli-i18n.workspace = true
+moli-runtime.workspace = true
+anyhow.workspace = true
+serde.workspace = true
+tokio.workspace = true
+tracing.workspace = true
+
+[lints]
+workspace = true

@@ -1,4 +1,5 @@
 {
+  "pilotes.modbus.appareil": "Modbus device",
   "pilotes.telegram.pas_de_jeton": "no bot token: create the bot with @BotFather, put the token in the instance’s `token_file` (a mounted secret, outside the repository), then restart Moli",
   "pilotes.telegram.jeton_refuse": "{error}: check the bot token (`token_file`)",
   "pilotes.telegram.injoignable": "Telegram unreachable ({cause})",
