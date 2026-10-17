@@ -546,7 +546,10 @@ async fn handle_command(
     client: &mut Option<Client>,
     command: &CommandRequest,
 ) -> Result<(), String> {
-    let Some(point) = config.points.iter().find(|p| p.key.as_str() == command.key.as_ref())
+    let Some(point) = config
+        .points
+        .iter()
+        .find(|p| p.key.as_str() == command.key.as_ref())
     else {
         return Err(format!("unknown point {}", command.key));
     };
