@@ -380,7 +380,7 @@ fn to_value(point: &Point, word: u16) -> Option<Value> {
         Kind::Enum { .. } => point
             .options
             .iter()
-            .find(|(_, raw)| *raw == word)
+            .find(|(_, raw)| **raw == word)
             .map(|(text, _)| Value::Text(text.clone().into())),
         Kind::Text => None,
     }
